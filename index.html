@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn Form Validation</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(45deg, red, pink, white, orange, violet);
+    }
+
+    .container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        padding: 20px;
+        width: 40%;
+        height: 80%;
+    }
+
+    input{
+        width: 60%;
+        height: 30px;
+        padding: 10px;
+        margin-bottom: 3px;
+        font-size: 17px;
+        border-radius: 5px;
+        outline: 0;
+        border: 0;
+        box-shadow: 1px 1px 2px gray;
+    }
+
+    .details_btns{
+        width: 50%;
+    }
+
+    button{
+        font-size: 16px;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        border-radius: 5px;
+        background: linear-gradient(45deg, red, pink, white, orange, violet);
+    }
+
+    #submit{
+        width: 50%;
+        margin-top: 5%;
+    }
+
+    #hide_details{
+        display: none;
+    }
+
+    @media screen and (max-width: 1050px) {
+        .container{
+            padding: 20px;
+            width: 60%;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .container{
+            padding: 20px;
+            width: 80%;
+        }
+    }
+
+</style>
+<body>
+
+    <h1 id="header">LogIn</h1>
+
+    <div class="container">
+        <input id="name" type="text" placeholder="Name">
+        <span id="name_vert_msg"></span>
+        <br>
+
+        <input id="email" type="email" placeholder="Email">
+        <span id="email_vert_msg"></span>
+        <br>
+
+        <input id="password" type="text" placeholder="Password">
+        <span id="password_vert_msg"></span>
+        <br>
+
+        <button id="submit" onclick="login()">login</button>
+        <br><br>
+
+        <div class="details_btns">
+            <button id="show_details" onclick="show_login_details()">View logins</button>
+            <button id="hide_details" onclick="hide_login_details()">Hide logins</button>
+        </div>
+
+        <div>
+            <p id="name_text"></p>
+            <p id="email_text"></p>
+            <p id="password_text"></p>
+        </div>
+    </div>
+
+    <script>
+        right_name = "Jawad";
+        right_email = 'jawadnassam@gmail.com';
+        right_password = 'jawad';
+
+        function login(){
+            var name_value = document.getElementById('name').value;
+            var email_value = document.getElementById('email').value;
+            var password_value = document.getElementById('password').value;
+
+            // username validation
+
+            if(name_value.length == 0){
+                name_verification_msg = document.getElementById('name_vert_msg').innerHTML = 'this field is required'
+                document.getElementById('name_vert_msg').style.color = 'red'
+                document.getElementById('name_vert_msg').innerHTML = name_verification_msg
+                document.getElementById('name').style.boxShadow = '1px 1px 2px red'
+            }
+
+            else if(name_value != right_name){
+                name_verification_msg = document.getElementById('name_vert_msg').innerHTML = 'Incorrect Username'
+                document.getElementById('name_vert_msg').style.color = 'red'
+                document.getElementById('name_vert_msg').innerHTML = name_verification_msg
+                document.getElementById('name').style.boxShadow = '1px 1px 2px red'
+            }
+
+            else if(name_value == right_name){
+                document.getElementById('name_vert_msg').innerHTML = 'valid'
+                name_verification_msg = document.getElementById('name_vert_msg').innerHTML
+                document.getElementById('name_vert_msg').style.color = 'green'
+                document.getElementById('name').style.boxShadow = '1px 1px 2px green'
+            }
+            
+            // email validation
+            
+            if(email_value.length == 0){
+                email_verification_msg = document.getElementById('email_vert_msg').innerHTML = 'this field is required'
+                document.getElementById('email_vert_msg').style.color = 'red'
+                document.getElementById('email_vert_msg').innerHTML = email_verification_msg
+                document.getElementById('email').style.boxShadow = '1px 1px 2px red'
+            }
+
+            else if(email_value != right_email){
+                email_verification_msg = document.getElementById('email_vert_msg').innerHTML = 'Incorrect Email'
+                document.getElementById('email_vert_msg').style.color = 'red'
+                document.getElementById('email_vert_msg').innerHTML = email_verification_msg
+                document.getElementById('email').style.boxShadow = '1px 1px 2px red'
+            }
+
+            else if(email_value == right_email){
+                document.getElementById('email_vert_msg').innerHTML = 'valid'
+                email_verification_msg = document.getElementById('email_vert_msg').innerHTML
+                document.getElementById('email_vert_msg').style.color = 'green'
+                document.getElementById('email').style.boxShadow = '1px 1px 2px green'
+                }
+
+            // password validation
+            
+            if(password_value.length == 0){
+                password_verification_msg = document.getElementById('password_vert_msg').innerHTML = 'this field is required'
+                document.getElementById('password_vert_msg').style.color = 'red'
+                document.getElementById('password_vert_msg').innerHTML = password_verification_msg
+                document.getElementById('password').style.boxShadow = '1px 1px 2px red'
+            }
+
+            else if(password_value != right_password){
+                document.getElementById('password_vert_msg').innerHTML = 'Incorrect Password'
+                password_verification_msg = document.getElementById('password_vert_msg').innerHTML
+                document.getElementById('password_vert_msg').style.color = 'red'
+                document.getElementById('password').style.boxShadow = '1px 1px 2px red'
+            }
+
+            else if(password_value == right_password){
+                document.getElementById('password_vert_msg').innerHTML = 'valid'
+                password_verification_ms = document.getElementById('password_vert_msg').innerHTML
+                document.getElementById('password_vert_msg').style.color = 'green'
+                document.getElementById('password').style.boxShadow = '1px 1px 2px green'
+                }
+            
+            // login message
+            if(password_verification_ms == 'valid'  && email_verification_msg == 'valid' && name_verification_msg == 'valid'){
+                document.getElementById('header').innerHTML = 'Login Successful'
+            }
+        };
+
+        function show_login_details(){
+            document.getElementById('hide_details').style.display = 'block'
+            document.getElementById('show_details').style.display = 'none'
+
+            document.getElementById('name_text').innerHTML = 'Name: ' + right_name
+            document.getElementById('name_text').style.display = 'block'
+
+            document.getElementById('email_text').innerHTML = 'Email: ' + right_email
+            document.getElementById('email_text').style.display = 'block'
+
+            document.getElementById('password_text').innerHTML = 'Password: ' + right_password
+            document.getElementById('password_text').style.display = 'block'
+        }
+
+        function hide_login_details(){
+            document.getElementById('hide_details').style.display = 'none'
+            document.getElementById('show_details').style.display = 'block'
+
+            document.getElementById('name_text').style.display = 'none'
+            document.getElementById('email_text').style.display = 'none'
+            document.getElementById('password_text').style.display = 'none'
+        }
+    </script>
+</body>
+</html>
